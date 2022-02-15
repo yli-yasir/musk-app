@@ -15,3 +15,5 @@
 * As a user, I would prefer to have a map to view work sites, so that I can quickly and intuitively view and navigate inspection sites.
 
 * As an inspector, I would like to be able to use the service from both mobile and desktop devices, so that producitivity is increased and time is saved.
+
+
