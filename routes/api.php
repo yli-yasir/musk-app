@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\InspectionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
+
+
+Route::get('/inspections', [InspectionController::class, "getAll"]);
+
+Route::post('/inspections', [InspectionController::class, "add"]);
