@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InspectionController;
+use App\Http\Controllers\InspectionSiteController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,6 +26,4 @@ Route::get('/greeting', function () {
 });
 
 
-Route::get('/inspections', [InspectionController::class, "getAll"]);
-
-Route::post('/inspections', [InspectionController::class, "add"]);
+Route::apiResource('inspection-sites', InspectionSiteController::class);

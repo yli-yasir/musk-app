@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inspection;
+use App\Models\InspectionSite;
 use Illuminate\Http\Request;
 
-class InspectionController extends Controller
+class InspectionSiteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,7 @@ class InspectionController extends Controller
     public function index()
     {
         //
+        return InspectionSite::all();
     }
 
     /**
@@ -35,27 +36,34 @@ class InspectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inspectionSite = new InspectionSite;
+
+        $inspectionSite->name = $request->name;
+
+
+        $inspectionSite->save();
+
+        return response()->json('created', 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Inspection  $inspection
+     * @param  \App\Models\InspectionSite  $inspectionSite
      * @return \Illuminate\Http\Response
      */
-    public function show(Inspection $inspection)
+    public function show(InspectionSite $inspectionSite)
     {
-        //
+        return $inspectionSite;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Inspection  $inspection
+     * @param  \App\Models\InspectionSite  $inspectionSite
      * @return \Illuminate\Http\Response
      */
-    public function edit(Inspection $inspection)
+    public function edit(InspectionSite $inspectionSite)
     {
         //
     }
@@ -64,22 +72,24 @@ class InspectionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Inspection  $inspection
+     * @param  \App\Models\InspectionSite  $inspectionSite
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Inspection $inspection)
+    public function update(Request $request, InspectionSite $inspectionSite)
     {
-        //
+        $inspectionSite->update($request->all());
+        return $inspectionSite;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Inspection  $inspection
+     * @param  \App\Models\InspectionSite  $inspectionSite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inspection $inspection)
+    public function destroy(InspectionSite $inspectionSite)
     {
-        //
+        $inspectionSite->delete();
+        return response()->noContent();
     }
 }

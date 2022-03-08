@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inspection;
+use App\Models\InspectionSubsection;
 use Illuminate\Http\Request;
 
-class InspectionController extends Controller
+class InspectionSubsectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class InspectionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Inspection  $inspection
+     * @param  \App\Models\InspectionSubsection  $inspectionSubsection
      * @return \Illuminate\Http\Response
      */
-    public function show(Inspection $inspection)
+    public function show(InspectionSubsection $inspectionSubsection)
     {
         //
     }
@@ -52,10 +52,10 @@ class InspectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Inspection  $inspection
+     * @param  \App\Models\InspectionSubsection  $inspectionSubsection
      * @return \Illuminate\Http\Response
      */
-    public function edit(Inspection $inspection)
+    public function edit(InspectionSubsection $inspectionSubsection)
     {
         //
     }
@@ -64,10 +64,10 @@ class InspectionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Inspection  $inspection
+     * @param  \App\Models\InspectionSubsection  $inspectionSubsection
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Inspection $inspection)
+    public function update(Request $request, InspectionSubsection $inspectionSubsection)
     {
         //
     }
@@ -75,10 +75,10 @@ class InspectionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Inspection  $inspection
+     * @param  \App\Models\InspectionSubsection  $inspectionSubsection
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inspection $inspection)
+    public function destroy(InspectionSubsection $inspectionSubsection)
     {
         //
     }
