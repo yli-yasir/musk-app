@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Inspection extends Model
 {
     use HasFactory;
+
+
+    public function site()
+    {
+        return $this->belongsTo(InspectionSite::class);
+    }
 }

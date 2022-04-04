@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inspection;
 use Illuminate\Http\Request;
+use App\Http\Resources\InspectionResource;
 
 class InspectionController extends Controller
 {
@@ -14,7 +15,7 @@ class InspectionController extends Controller
      */
     public function index()
     {
-        //
+        return InspectionResource::collection(Inspection::all());
     }
 
     /**
@@ -35,7 +36,21 @@ class InspectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inspection = new Inspection;
+
+        $inspection->inspection_site_id = $request->siteId;
+
+        $inspection->intervention_count = $request->interventionCount;
+
+        $inspection->commendation_count = $request->commendationCount;
+
+        $report_file_path = $request->file('reportFile')->storePublicly('public');
+
+        $inspection->report_file = $report_file_path;
+
+        $inspection->save();
+
+        return response()->json('created', 201);
     }
 
     /**

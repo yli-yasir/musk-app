@@ -26,4 +26,4 @@ Route::get('/greeting', function () {
 });
 
 
-Route::apiResource('inspection-sites', InspectionSiteController::class);
+Route::apiResource('inspections', InspectionController::class)->except('destroy');
