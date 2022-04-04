@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\InspectionSite;
 use Illuminate\Http\Request;
+use App\Models\Inspection;
+
 
 class InspectionSiteController extends Controller
 {
@@ -14,8 +16,13 @@ class InspectionSiteController extends Controller
      */
     public function index()
     {
-        //
-        return InspectionSite::all();
+        $result = InspectionSite::select('*')
+            ->withCount('inspections')
+            ->withSum('inspections', 'intervention_count')
+            ->withSum('inspections', 'commendation_count')
+            ->get();
+
+        return $result;
     }
 
     /**
