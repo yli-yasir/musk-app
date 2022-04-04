@@ -18,6 +18,7 @@ class InspectionResource extends JsonResource
         return [
             'id' => $this->id,
             'inspectionSiteId' => $this->inspection_site_id,
+            'inspectionSiteName' => $this->inspection_site_name,
             'interventionCount' => $this->intervention_count,
             'commendationCount' => $this->commendation_count,
             'reportFile' => Storage::url($this->report_file),

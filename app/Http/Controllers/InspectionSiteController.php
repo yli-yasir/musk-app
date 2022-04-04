@@ -40,6 +40,7 @@ class InspectionSiteController extends Controller
 
         $inspectionSite->name = $request->name;
 
+        $inspectionSite->icon = $request->icon;
 
         $inspectionSite->save();
 

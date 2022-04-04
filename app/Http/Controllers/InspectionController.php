@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Inspection;
 use Illuminate\Http\Request;
 use App\Http\Resources\InspectionResource;
+use App\Models\InspectionSite;
 
 class InspectionController extends Controller
 {
@@ -15,7 +16,12 @@ class InspectionController extends Controller
      */
     public function index()
     {
-        return InspectionResource::collection(Inspection::all());
+
+        $result = Inspection::addSelect(['inspection_site_name' => InspectionSite::Select('name')
+            ->whereColumn('id', 'inspection_site_id')])
+            ->get();
+
+        return InspectionResource::collection($result);
     }
 
     /**
