@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\InspectionSite;
 use Illuminate\Http\Request;
+use App\Http\Resources\InspectionSiteResource;
 use App\Models\Inspection;
 
 
@@ -22,7 +23,7 @@ class InspectionSiteController extends Controller
             ->withSum('inspections', 'commendation_count')
             ->get();
 
-        return $result;
+        return InspectionSiteResource::collection($result);
     }
 
     /**
@@ -47,7 +48,7 @@ class InspectionSiteController extends Controller
 
         $inspectionSite->name = $request->name;
 
-        $inspectionSite->icon = $request->icon;
+        $inspectionSite->icon = $request->file('icon')->storePublicly('public');
 
         $inspectionSite->save();
 
@@ -57,12 +58,19 @@ class InspectionSiteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\InspectionSite  $inspectionSite
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(InspectionSite $inspectionSite)
+    public function show($id)
     {
-        return $inspectionSite;
+
+        $result = InspectionSite::find($id)
+            ->withCount('inspections')
+            ->withSum('inspections', 'intervention_count')
+            ->withSum('inspections', 'commendation_count')
+            ->get();
+
+        return InspectionSiteResource::collection($result);
     }
 
     /**
