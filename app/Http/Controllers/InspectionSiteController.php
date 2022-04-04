@@ -48,8 +48,8 @@ class InspectionSiteController extends Controller
 
         $inspectionSite->name = $request->name;
 
-        $inspectionSite->icon = $request->file('icon')->storePublicly('public');
-
+        // $inspectionSite->icon = $request->file('icon')->storePublicly('public');
+        $inspectionSite->icon = 'b';
         $inspectionSite->save();
 
         return response()->json('created', 201);

@@ -11,14 +11,19 @@ class InspectionController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $result = Inspection::addSelect(['inspection_site_name' => InspectionSite::Select('name')
             ->whereColumn('id', 'inspection_site_id')])
+            ->orderBy('created_at', $request->query("dateOrder", "desc"))
+            ->where(function ($query) {
+                $query->select('name')->from('inspection_sites')->whereColumn('id', 'inspection_site_id');
+            }, 'like', $request->query('site', '%'))
+            ->orderBy('intervention_count', $request->query("interventionOrder", "desc"))
             ->get();
 
         return InspectionResource::collection($result);
