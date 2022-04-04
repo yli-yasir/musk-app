@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\InspectionSiteController;
-
+use App\Http\Controllers\InspectionSectionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,3 +30,5 @@ Route::apiResource('inspections', InspectionController::class)->except('destroy'
 
 
 Route::apiResource('inspection-sites', InspectionSiteController::class);
+
+Route::apiResource('inspection-sections', InspectionSectionController::class);

@@ -14,7 +14,7 @@ class InspectionSectionController extends Controller
      */
     public function index()
     {
-        //
+        return InspectionSection::with('subsections')->get();
     }
 
     /**

@@ -64,13 +64,18 @@ class InspectionSiteController extends Controller
     public function show($id)
     {
 
-        $result = InspectionSite::find($id)
-            ->withCount('inspections')
-            ->withSum('inspections', 'intervention_count')
-            ->withSum('inspections', 'commendation_count')
-            ->get();
+        $result = InspectionSite::find($id);
 
-        return InspectionSiteResource::collection($result);
+        if ($result) {
+            $result->withCount('inspections')
+                ->withSum('inspections', 'intervention_count')
+                ->withSum('inspections', 'commendation_count')
+                ->get();
+
+            return InspectionSiteResource::collection($result);
+        }
+
+        return response('Not Found', 404);
     }
 
     /**
