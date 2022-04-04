@@ -25,6 +25,20 @@ class InspectionController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function stats()
+    {
+
+        $interventionCount = Inspection::all()->sum('intervention_count');
+        $commendationCount = Inspection::all()->sum('commendation_count');
+
+        return response()->json(['interventionCount' => $interventionCount, 'commendationCount' => $commendationCount]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

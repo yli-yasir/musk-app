@@ -25,9 +25,9 @@ Route::get('/greeting', function () {
     return 'Hello World';
 });
 
+Route::get('inspections/stats', [InspectionController::class, 'stats']);
 
 Route::apiResource('inspections', InspectionController::class)->except('destroy');
-
 
 Route::apiResource('inspection-sites', InspectionSiteController::class);
 

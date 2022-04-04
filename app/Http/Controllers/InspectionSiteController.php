@@ -65,7 +65,6 @@ class InspectionSiteController extends Controller
     {
 
         $result = InspectionSite::find($id);
-
         if ($result) {
             $result->withCount('inspections')
                 ->withSum('inspections', 'intervention_count')
