@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InspectionController;
@@ -25,7 +26,12 @@ Route::get('/greeting', function () {
     return 'Hello World';
 });
 
-Route::get('inspections/stats', [InspectionController::class, 'stats']);
+Route::middleware('auth:sanctum')->get('inspections/stats', [InspectionController::class, 'stats']);
+
+
+Route::post('register', [AuthController::class, 'register']);
+
+Route::post('login', [AuthController::class, 'login']);
 
 Route::apiResource('inspections', InspectionController::class)->except('destroy');
 
