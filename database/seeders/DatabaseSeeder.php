@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +24,13 @@ class DatabaseSeeder extends Seeder
         DB::table('inspection_subsections')->insert([
             'inspection_section_id' => 1,
             'title' => 'work at height sub',
+        ]);
+
+
+        DB::table('users')->insert([
+            'email' => "admin@musk.com",
+            'password' => Hash::make('1234'),
+            'role' => "admin",
         ]);
     }
 }

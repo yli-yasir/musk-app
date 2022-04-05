@@ -29,7 +29,7 @@ Route::get('/greeting', function () {
 Route::middleware('auth:sanctum')->get('inspections/stats', [InspectionController::class, 'stats']);
 
 
-Route::post('register', [AuthController::class, 'register']);
+Route::middleware(['auth:sanctum', 'ability:admin'])->post('register', [AuthController::class, 'register']);
 
 Route::post('login', [AuthController::class, 'login']);
 

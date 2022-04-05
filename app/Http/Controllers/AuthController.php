@@ -18,9 +18,11 @@ class AuthController extends Controller
         ]);
 
         $hashedPassword = Hash::make($request->password);
+
         $user = User::create([
             'email' => $request->email,
-            'password' => $hashedPassword
+            'password' => $hashedPassword,
+            'role' => "user"
         ]);
 
         return $user;
@@ -35,9 +37,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
 
-            $token = $request->user()->createToken('auth_token');
+            $token = $request->user()->createToken('auth_token', [$request->user()->role]);
 
-            return ['token' => $token->plainTextToken];
+            return ['token' => $token->plainTextToken, 'role' => $request->user()->role];
         }
 
         return response('unauthorized', 401);
