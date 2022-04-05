@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('icon');
+            $table->decimal('lat', 8, 6);
+            $table->decimal('long', 9, 6);
             $table->timestamps();
         });
     }

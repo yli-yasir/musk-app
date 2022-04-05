@@ -61,20 +61,14 @@ class InspectionSiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
+        $result = InspectionSite::where('id', '=', $id)->withCount('inspections')
+            ->withSum('inspections', 'intervention_count')
+            ->withSum('inspections', 'commendation_count')
+            ->get();
 
-        $result = InspectionSite::find($id);
-        if ($result) {
-            $result->withCount('inspections')
-                ->withSum('inspections', 'intervention_count')
-                ->withSum('inspections', 'commendation_count')
-                ->get();
-
-            return InspectionSiteResource::collection($result);
-        }
-
-        return response('Not Found', 404);
+        return new InspectionSiteResource($result[0]);
     }
 
     /**

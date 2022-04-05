@@ -17,16 +17,27 @@ class InspectionController extends Controller
     public function index(Request $request)
     {
 
-        $result = Inspection::addSelect(['inspection_site_name' => InspectionSite::Select('name')
-            ->whereColumn('id', 'inspection_site_id')])
-            ->orderBy('created_at', $request->query("dateOrder", "desc"))
-            ->where(function ($query) {
-                $query->select('name')->from('inspection_sites')->whereColumn('id', 'inspection_site_id');
-            }, 'like', $request->query('site', '%'))
-            ->orderBy('intervention_count', $request->query("interventionOrder", "desc"))
-            ->get();
+        $queryBuilder = Inspection::addSelect(['inspection_site_name' => InspectionSite::Select('name')
+            ->whereColumn('id', 'inspection_site_id')]);
 
-        return InspectionResource::collection($result);
+        if ($request->query("dateOrder")) {
+            $queryBuilder->orderBy('created_at', $request->query("dateOrder"));
+        }
+
+        if ($request->query("interventionOrder")) {
+            $queryBuilder->orderBy('intervention_count', $request->query("interventionOrder"));
+        }
+
+
+        if ($request->query('site')) {
+            $queryBuilder->where(function ($query) {
+                $query->select('name')->from('inspection_sites')->whereColumn('id', 'inspection_site_id');
+            }, 'like', $request->query('site'));
+        }
+
+
+
+        return InspectionResource::collection($queryBuilder->get());
     }
 
     /**

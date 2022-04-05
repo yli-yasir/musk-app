@@ -26,8 +26,7 @@ Route::get('/greeting', function () {
     return 'Hello World';
 });
 
-Route::middleware('auth:sanctum')->get('inspections/stats', [InspectionController::class, 'stats']);
-
+Route::get('inspections/stats', [InspectionController::class, 'stats']);
 
 Route::middleware(['auth:sanctum', 'ability:admin'])->post('register', [AuthController::class, 'register']);
 

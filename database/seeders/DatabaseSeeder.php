@@ -32,5 +32,37 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('1234'),
             'role' => "admin",
         ]);
+
+        DB::table('inspection_sites')->insert([
+            'name' => 'Hammer Works',
+            'icon' => 'icon3.png',
+            'lat' => 52.207862,
+            'long' => 0.121801,
+        ]);
+
+
+
+        DB::table('inspection_sites')->insert([
+            'name' => 'Book Mine',
+            'icon' => 'icon4.png',
+            'lat' => 52.91610340678577,
+            'long' => -1.7891139748472968,
+        ]);
+
+
+        DB::table('inspection_sites')->insert([
+            'name' => 'Forest Hut',
+            'icon' => 'icon1.png',
+            'lat' => 50.79775067058368,
+            'long' => -4.275887573395824,
+        ]);
+
+
+        DB::table('inspection_sites')->insert([
+            'name' => 'Musashi Industries',
+            'icon' => 'icon2.png',
+            'lat' => 55.46864808713026,
+            'long' => -2.9771329872332046,
+        ]);
     }
 }

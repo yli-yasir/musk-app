@@ -18,6 +18,8 @@ class InspectionSiteResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'long' => $this->long,
+            'lat' => $this->lat,
             'inspectionCount' => $this->inspections_count,
             'interventionCount' => $this->inspections_sum_intervention_count,
             'commendationCount' => $this->inspections_sum_commendation_count,
